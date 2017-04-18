@@ -1,0 +1,32 @@
+{
+  "name": "download-pens",
+  "version": "0.0.1",
+  "description": "Download codepens for local use.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "bin": {
+    "download-pens": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitcraftlab/download-pens"
+  },
+  "keywords": [
+    "codepen",
+    "download",
+    "backup",
+    "pens",
+    "api"
+  ],
+  "author": "@bitcraftlab",
+  "license": "MIT",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "commander": "^2.9.0",
+    "innertext": "^1.0.1",
+    "node-fetch": "^1.6.3",
+    "truncate": "^2.0.0"
+  }
+}
