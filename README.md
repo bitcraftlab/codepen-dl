@@ -42,7 +42,10 @@ You can always ask for help:
       -p, --pages <first>..<last>  Page Range
       -d, --dir <dir_name>         Target directory
 
+Before wasting bandwidth it's always a good idea to have a look at what you are downloading.
+Use the `list` option:
 
+![](https://cloud.githubusercontent.com/assets/720669/25147781/f942f37c-2478-11e7-87eb-e3ddf68675e4.png)
 
 
 ## license
