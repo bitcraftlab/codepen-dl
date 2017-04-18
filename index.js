@@ -10,7 +10,7 @@ const path = require('path');
 const mkdirp = require('mkdirp');
 
 // default collections of codepen
-const user_collections = ['showcase', 'popular', 'public', 'loved', 'forked'];
+const user_collections = ['public', 'showcase', 'popular', 'loved', 'forked'];
 const cpen_collections = ['picks', 'popular', 'recent'];
 
 // parse command line arguments
