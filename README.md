@@ -6,9 +6,9 @@ _Powered by the inofficial [Codepen v2 API](http://cpv2api.com/)_.
 
 ## Example
 
-By default all codepens from the showcase will be downloaded.  
+By default all public codepens will be downloaded.  
 
-    download-pens bitcraftlab
+    codepen-dl bitcraftlab
 
 
 ## install
@@ -19,11 +19,11 @@ By default all codepens from the showcase will be downloaded.
 
 ### download a bunch of pens from a specific user
 
-    download-pens [--list|download] [--showcase|popular|public|loved|forked] [--first NUMBER] [--last NUMBER][--tag TAG] USER_ID
+    codepen-dl [--list|download] [--showcase|popular|public|loved|forked] [--first NUMBER] [--last NUMBER][--tag TAG] USER_ID
 
 ### download a bunch of pens from codepen
 
-    download-pens [--list|download] [--picked|popular|recent] [--first NUMBER] [--last NUMBER][--tag TAG]
+    codpen-dl [--list|download] [--picked|popular|recent] [--first NUMBER] [--last NUMBER][--tag TAG]
 
 
 ## license
