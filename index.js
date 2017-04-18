@@ -1,13 +1,12 @@
 #!/usr/bin/env node --harmony
 
-var fetch = require('node-fetch')
-var program = require('commander');
-var Table = require('cli-table');
-var innertext = require('innertext');
+const fetch = require('node-fetch');
+const program = require('commander');
+const Table = require('cli-table');
+const innertext = require('innertext');
 
-var user_collections = ['showcase', 'popular', 'public', 'loved', 'forked'];
-var cpen_collections = ['picks', 'popular', 'recent'];
-var maxpage = 1;
+const user_collections = ['showcase', 'popular', 'public', 'loved', 'forked'];
+const cpen_collections = ['picks', 'popular', 'recent'];
 
 // parse command line arguments
 
@@ -20,15 +19,14 @@ program
 ;
 
 // api parts
-var host = 'http://cpv2api.com';
-var api = 'pens';
-var action = 'download';
-var log = console.log;
+const host = 'http://cpv2api.com';
+const api = 'pens';
+let log = console.log;
+let action = 'download';
 
 ////////////////////////////////////////////////////////////////////////////////
 
 // pick your action
-var action = 'download';
 if(program.list) {
   action = 'list';
 }
@@ -38,33 +36,36 @@ if(!program.verbose) {
   log = function() {};
 }
 
-// page limits
+// default page limits
+let maxpage = 1;
+let minpage = 1;
 
-var [minpage, maxpage] = program.pages || [1, maxpage];
+// actual page limits
+[minpage, maxpage] = program.pages || [minpage, maxpage];
 
 ////////////////////////////////////////////////////////////////////////////////
 // argument parsing
 
-var args = program.args;
+const args = program.args;
 if(args.length === 0 || cpen_collections.includes(args[0])) {
 
   // download codepen collection
-  col = args[0];
+  let col = args[0];
   col = cpen_collections.includes(col) ? col : 'picks';
   console.log('Downloading Codepen\'s "%s" collection', col);
 
-  var parts = [host, api, col];
-  var dataurl = parts.join('/');
+  const parts = [host, api, col];
+  const dataurl = parts.join('/');
 
 } else {
 
   // download user collection
-  [user, col] = args;
+  let [user, col] = args;
   col = user_collections.includes(col) ? col : 'showcase';
   console.log('Downloading %s\'s "%s" collection', user, col);
 
-  var parts = [host, api, col, user];
-  var dataurl = parts.join('/');
+  const parts = [host, api, col, user];
+  const dataurl = parts.join('/');
 
   // number of data pages
   if(col === 'showcase') {
@@ -79,17 +80,19 @@ if(maxpage >= 1) {
   log('Retrieving pages %d - %d', minpage, maxpage);
 }
 
-// this is the download tool that does not download anything (yet)
-if(action === 'download') {
-  console.log('download not yet implemented, just listing the result ...');
-  action = 'list';
-}
-
 // create, then print the table
-fetchPages(dataurl, minpage)
+fetchPages(dataurl, table, minpage)
 .then(table => {
   if(table) {
-    console.log(table.toString());
+
+    if(action === 'list') {
+      console.log(table.toString());
+    }
+
+    if(action === 'download') {
+      console.log(table);
+    }
+
   } else {
     console.log('no result.');
   }
@@ -102,7 +105,7 @@ fetchPages(dataurl, minpage)
 // functions
 
 // poor man's truncate
-var truncate = (str, l) => str.length < l ? str : str.substring(0, l - 1) + '…';
+const truncate = (str, l) => str.length < l ? str : str.substring(0, l - 1) + '…';
 
 // parse a value or range
 function value_or_range(val) {
@@ -110,8 +113,7 @@ function value_or_range(val) {
   return r.length === 1 ? [r[0], r[0]] : r;
 }
 
-
-function fetchPages(url, page = 1, table) {
+function fetchPages(url, table, page = 1) {
 
   // keep fetching recursively, until there are no more pages
   // or until maxpage is reached ...
@@ -120,12 +122,12 @@ function fetchPages(url, page = 1, table) {
   .then(result => {
     if(result && (page < maxpage)) {
       // fetch the next page
-      return fetchPages(url, page + 1, table);
+      return fetchPages(url, table, page + 1);
     } else {
       // return the table
       return table;
     }
-  })
+  });
 
   // fetch a data page from the url adding information to the table
   // implemented as inner function, to allow easy access to the table object
@@ -133,7 +135,8 @@ function fetchPages(url, page = 1, table) {
   function fetchPage(url, page) {
 
     // add page parameter to the url
-    var url = url + '?page=' + page;
+    url = url + '?page=' + page;
+
     log("Fetching", url);
 
     return fetch(url)
@@ -160,7 +163,7 @@ function fetchPages(url, page = 1, table) {
           // only pick the values that match the headers
           var values = headers.map( key => {
             // render HTML to text for details
-            return (key === 'details' || key === 'title') ? truncate(innertext(entry[key]), 40) : entry[key]
+            return (key === 'details' || key === 'title') ? truncate(innertext(entry[key]), 40) : entry[key];
           });
 
           // add entries to the table
