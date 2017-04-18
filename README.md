@@ -25,9 +25,6 @@ By default all codepens from the showcase will be downloaded.
 
     download-pens [--list|download] [--picked|popular|recent] [--first NUMBER] [--last NUMBER][--tag TAG]
 
-### download a specific pen
-
-    download-pens --pen CODEPEN_ID
 
 ## license
 
