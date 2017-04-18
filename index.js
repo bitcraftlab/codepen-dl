@@ -67,7 +67,7 @@ if(args.length === 0 || cpen_collections.includes(args[0])) {
 
   // download user collection
   [user, col] = args;
-  col = user_collections.includes(col) ? col : 'showcase';
+  col = user_collections.includes(col) ? col : 'public';
   console.log('%sing %s\'s "%s" collection', action, user, col);
 
   parts = [host, api, col, user];
