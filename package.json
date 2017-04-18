@@ -7,7 +7,7 @@
     "test": "test.js"
   },
   "bin": {
-    "download-pens": "./index.js"
+    "codepen-dl": "./index.js"
   },
   "repository": {
     "type": "git",
