@@ -1,5 +1,5 @@
 {
-  "name": "download-pens",
+  "name": "codepen-dl",
   "version": "0.0.1",
   "description": "Download codepens for local use.",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitcraftlab/download-pens"
+    "url": "https://github.com/bitcraftlab/codepen-dl"
   },
   "keywords": [
     "codepen",
@@ -27,6 +27,8 @@
     "commander": "^2.9.0",
     "innertext": "^1.0.1",
     "node-fetch": "^1.6.3",
-    "truncate": "^2.0.0"
+    "request": "^2.81.0",
+    "truncate": "^2.0.0",
+    "unzip": "^0.1.11"
   }
 }
