@@ -3,27 +3,46 @@
 Download codepens for local use.  
 
 _Powered by the inofficial [Codepen v2 API](http://cpv2api.com/)_.
-
-## Example
-
-By default all public codepens will be downloaded.  
-
-    codepen-dl bitcraftlab
-
-
 ## install
 
     npm install -g
 
-## Usage
+## usage
 
-### download a bunch of pens from a specific user
+##### download a bunch of pens from a specific user
 
-    codepen-dl [--list|download] [--showcase|popular|public|loved|forked] [--first NUMBER] [--last NUMBER][--tag TAG] USER_ID
+    codepen-dl [--list] [--pages RANGE] USER_ID [public|showcase|popular|loved|forked]
 
-### download a bunch of pens from codepen
+##### download a bunch of pens from codepen
 
-    codpen-dl [--list|download] [--picked|popular|recent] [--first NUMBER] [--last NUMBER][--tag TAG]
+    codepen-dl [--list] [--pages RANGE] [picks|popular|recent]
+
+
+## examples
+
+By default all public codepens will be downloaded.
+
+    codepen-dl bitcraftlab
+
+The download stops after 10 pages of pens. Use the `pages` option, if you want to specify a different page range.  
+Downloading pages 11 to 15 of codepen's picks:
+
+    codepen-dl --pages 11..15
+
+You can always ask for help:
+
+    codpene-dl --help
+    Usage: codepen-dl [options] [user] [collection]
+
+    Options:
+
+      -h, --help                   output usage information
+      -l, --list                   List the pens rather than downloading them
+      -v, --verbose                Verbose output
+      -p, --pages <first>..<last>  Page Range
+      -d, --dir <dir_name>         Target directory
+
+
 
 
 ## license
