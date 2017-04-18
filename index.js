@@ -58,7 +58,7 @@ if(args.length === 0 || cpen_collections.includes(args[0])) {
   col = args[0];
   user = 'codepen';
   col = cpen_collections.includes(col) ? col : 'picks';
-  console.log('%s ing %s\'s "%s" collection', action, user, col);
+  console.log('%sing %s\'s "%s" collection', action, user, col);
 
   parts = [host, api, col];
   dataurl = parts.join('/');
